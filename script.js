@@ -10,6 +10,7 @@ var done = false;
 
 $(document).ready(function(){
   $(".arrow_red").hide();
+  $(".compass").hide();
   $("#afterLocation").hide();
   $("#dropdownMenu1").hide();
 Compass.init(function (method) {
@@ -24,6 +25,8 @@ Compass.init(function (method) {
     $('.arrow_green').css('transform', 'rotate(' + (chosenBearing-heading) + 'deg)');
   }
   $('.arrow_red').css('transform', 'rotate(' + (trueBearing - heading)+ 'deg)');
+  $('.compass').css('transform', 'rotate(' + (- heading)+ 'deg)');
+
   // $("#compass_debug").text(  "True Bearing: "+trueBearing+ "\nHeading: "+(-heading));
 });
 
@@ -49,6 +52,8 @@ Compass.init(function (method) {
 // console.log(asdf);
 $(".countrySelect").click(function(e){
   $(".arrow_red").hide();
+  $(".compass").hide();
+
 
   toPlace = $(this).html();
   $("#lookingFor").html("Looking for " + toPlace);
@@ -59,6 +64,7 @@ $(".countrySelect").click(function(e){
   getBearing();
   $("#dropdownMenu1").text(toPlace);
   $("#checkBearing").show();
+  $("#result").text("");
 
   //console.log(tLat);
   //console.log(getBearing());
@@ -79,6 +85,7 @@ $("#checkBearing").click(function(e){
   }
   done = true;
   $(".arrow_red").show();
+  $(".compass").show();
 
   if(test <= 30){
   $("#result").html("Success!<br>You were within " + test +" degrees"  );

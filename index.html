@@ -10,20 +10,27 @@
   </head>
 
   <body>
-    <br>
-    <br>
-    <br>
+    <div class="container">
+    <img src="compass.jpg" class="compass" width="200px" height="200px" style="float:right;"/>
+    </div>
     <br>
     <div class="row">
       <div class="col-md-4"></div>
       <div class="col-md-4" style="text-align:center;">
-        <img src="arrow_red.png" class="arrow_red" width="100px" height="100px"/>
-      <img src="arrow_green.png" class="arrow_green" width="100px" height="100px"/>
+      <img src="arrow_red.png" class="arrow_red" width="75px" height="75px" />
+
+      <img src="arrow_green.png" class="arrow_green" width="75px" height="75px"/>
       <br><br>
       <!-- <span id="heading"></span> -->
       <button class="btn btn-success btn-lg" id="getLocation">Get My Location</button>
       <br><br>
       <div id="afterLocation">
+        <div class="container">
+          <span style="float:left;color:red;">Where it is</span>
+          <span style="float:right;color:green;">Where you said</span>
+
+        </div>
+
       <span id="lookingFor"></span><br>
       <span id="myLocation">test</span>
 
@@ -280,7 +287,7 @@
 </div>
 <br><br>
 <!-- <button class="btn btn-success btn-lg" id="findNorth">Find North</button> -->
-<button class="btn btn-warning btn-lg" id="checkBearing">Find North</button>
+<button class="btn btn-warning btn-lg" id="checkBearing">Point To North</button>
 <div id="result"></div>
 <div id="compass_debug"></div>
 </div>
