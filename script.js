@@ -11,6 +11,7 @@ var done = false;
 $(document).ready(function(){
   $(".arrow_red").hide();
   $("#afterLocation").hide();
+  $("#dropdownMenu1").hide();
 Compass.init(function (method) {
   //alert('Compass heading by ' + method);
   });
@@ -57,6 +58,8 @@ $(".countrySelect").click(function(e){
   $('.arrow_green').css('transform', 'none');
   getBearing();
   $("#dropdownMenu1").text(toPlace);
+  $("#checkBearing").show();
+
   //console.log(tLat);
   //console.log(getBearing());
   // console.log($(this).attr('lat'));
@@ -83,7 +86,16 @@ $("#checkBearing").click(function(e){
   else{
     $("#result").html("Wrong!<br>You were within " + (test%360) +" degrees" );
   }
+  $("#checkBearing").html("Check Direction");
+  $("#checkBearing").hide();
+  $("#dropdownMenu1").show();
 });
+// $("#findNorth").click(function(){
+//
+// });
+function checkBearing(){
+
+}
 function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition, errorPosition);
@@ -95,6 +107,8 @@ function showPosition(position) {
 
   fLat = position.coords.latitude;
   fLong = position.coords.longitude;
+  tLat = fLat + 1;
+  tLong = fLong;
   $("#myLocation").html("Me: Lat: "+ fLat + "\nLong: " + fLong);
   $("#getLocation").hide();
   $("#afterLocation").show();
