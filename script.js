@@ -4,8 +4,8 @@ Compass.init(function (method) {
   });
 
   Compass.watch(function (heading) {
-  $('.btn').text(heading);
-  $('.btn').css('transform', 'rotate(' + (-heading) + 'deg)');
+  $('.arrow').text(heading);
+  $('.arrow').css('transform', 'rotate(' + (-heading) + 'deg)');
 });
 
 });
