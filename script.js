@@ -6,7 +6,9 @@ var fLong = 0;
 var currentBearing = 0;
 var chosenBearing = 0;
 var trueBearing = 0;
+var foundNorth = false;
 var done = false;
+var theDistance = 0;
 
 $(document).ready(function(){
   $(".arrow_red").hide();
@@ -86,16 +88,31 @@ $("#checkBearing").click(function(e){
   done = true;
   $(".arrow_red").show();
   $(".compass").show();
-
+  var resultText = "";
   if(test <= 30){
-  $("#result").html("Success!<br>You were within " + test +" degrees"  );
+    if(foundNorth == true){
+        $("#result").html("Success!<br>You were within " + test +" degrees<br>The distance: "+theDistance +"km"  );
+    }
+    else{
+      $("#result").html("Success!<br>You were within " + test +" degrees" );
+
+    }
+
   }
   else{
-    $("#result").html("Wrong!<br>You were within " + (test%360) +" degrees" );
+    if(foundNorth == true){
+      $("#result").html("Wrong!<br>You were within " + (test%360) +" degrees<br>The distance: "+theDistance +"km" );
+
+    }
+    else{
+      $("#result").html("Wrong!<br>You were within " + (test%360) +" degrees" );
+
+    }
   }
   $("#checkBearing").html("Check Direction");
   $("#checkBearing").hide();
   $("#dropdownMenu1").show();
+  foundNorth = true;
 });
 // $("#findNorth").click(function(){
 //
@@ -134,6 +151,13 @@ function getBearing(){
   angle = (angle + 2*Math.PI) % (2*Math.PI);
   console.log(fLatRad + " " + fLongRad + " " + tLatRad + " " +tLongRad);
   trueBearing = radToDeg(angle);
+
+  var dPhi = tLatRad - fLatRad;
+  var dLambda = tLongRad - fLongRad;
+  var R = 6371000;
+  var a = Math.sin(dPhi/2) * Math.sin(dPhi/2) + Math.cos(fLatRad) * Math.cos(tLatRad) * Math.sin(dLambda/2) * Math.sin(dLambda/2);
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  theDistance = (R*c)/1000;
   //console.log(trueBearing)
   return radToDeg(angle);
 }
